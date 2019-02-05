@@ -12,6 +12,15 @@ class PoliticalOfficeTests(RoutesBaseTest):
                                       content_type='application/json')
         self.assertEqual(response.status_code, 201)
 
+    def test_get_specific_office_by_id(self):
+        """Tests API can get a specific party by using its id"""
+        self.client().post('/api/v1/office', data=self.add_office,
+                           content_type='application/json')
+        response = self.client().get('/api/v1/office/1',
+                                     content_type='application/json',
+                                     )
+        self.assertEqual(response.status_code, 200)
+
 
 if __name__ == '__main__':
     unittest.main()

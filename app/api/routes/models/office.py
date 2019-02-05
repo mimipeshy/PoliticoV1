@@ -22,4 +22,10 @@ class PoliticalOffice:
         }
         return new_office
 
-    
+    @staticmethod
+    def get_all_offices():
+        return make_response(jsonify(
+            {"status": "OK",
+             "Message": "These are all political offices",
+             "Political office": office
+             }))

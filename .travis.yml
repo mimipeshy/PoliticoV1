@@ -9,7 +9,7 @@ env:
   - FLASK_VERSION=1.0.2
 
 script:
-  - pytest --cov-report term-missing --cov=app
+  - pytest --cov=app
 
 after_script:
   - coveralls

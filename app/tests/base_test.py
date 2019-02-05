@@ -8,7 +8,7 @@ class RoutesBaseTest(unittest.TestCase):
     def setUp(self):
         self.app = create_app(config_name="testing")
         self.client = self.app.test_client
-    # tear down tests
+        # tear down tests
 
         self.add_party = json.dumps({
             "party_name": "sugar",
@@ -20,6 +20,22 @@ class RoutesBaseTest(unittest.TestCase):
             "location": "kinoo",
             "description": "ni ya madem"
         })
+        self.empty_party_name = json.dumps({
+            "party_name": " ",
+            "location": "kinoo",
+            "description": "thiijo"
+        })
+        self.empty_location = json.dumps({
+            "party_name": "wazee united",
+            "location": " ",
+            "description": "thiijo"
+        })
+        self.empty_description = json.dumps({
+            "party_name": "wazee united",
+            "location": "thengio ",
+            "description": " "
+        })
+
     def tearDown(self):
         """Teardown tests"""
         self.app.testing = False

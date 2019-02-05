@@ -37,5 +37,18 @@ class PoliticalTests(RoutesBaseTest):
                                      )
         self.assertEqual(response.status_code, 404)
 
+    def test_political_update_successfully(self):
+        self.client().post('/api/v1/party', data=self.add_party,
+                           content_type='application/json')
+        response = self.client().put('/api/v1/party/1', data=self.update_office,
+                                     content_type='application/json',
+                                     )
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client().put('/api/v1/party/6', data=self.update_office,
+                                     content_type='application/json',
+                                     )
+        self.assertEqual(response.status_code, 404)
+
 if __name__ == '__main__':
     unittest.main()

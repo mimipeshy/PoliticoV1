@@ -15,6 +15,11 @@ class RoutesBaseTest(unittest.TestCase):
             "location": "kinoo",
             "description": "thiijo"
         })
+        self.update_office = json.dumps({
+            "party_name": "chama cha maendeleo",
+            "location": "kinoo",
+            "description": "ni ya madem"
+        })
     def tearDown(self):
         """Teardown tests"""
         self.app.testing = False

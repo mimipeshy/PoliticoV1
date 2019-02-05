@@ -50,5 +50,20 @@ class PoliticalTests(RoutesBaseTest):
                                      )
         self.assertEqual(response.status_code, 404)
 
+    def test_delete_party_by_id(self):
+        """Tests API can delete one by using its id"""
+
+        response = self.client().delete('/api/v1/party/1',
+                                        content_type='application/json',
+                                        )
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_non_existing_party(self):
+        response = self.client().delete('/api/v1/party/4',
+                                        content_type='application/json',
+                                        )
+        self.assertEqual(response.status_code, 404)
+
+
 if __name__ == '__main__':
     unittest.main()

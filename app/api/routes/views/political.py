@@ -13,9 +13,18 @@ def create_political_party():
     description = data["description"]
     location = data["location"]
     if Validations.verify_political_details(party_name, description, location):
-       return jsonify({"msg":"fill in the details"})
+        return jsonify({"msg": "fill in the details"})
     else:
         res = p.add_political_party(party_name, description, location)
         return make_response(jsonify({
             "party": res
         }), 201)
+
+
+@version1.route("/party", methods=['GET'])
+def get_all_parties():
+    if len(party) < 1:
+        return make_response(jsonify({"msg": "no created parties"}))
+    else:
+        res = p.get_all_parties()
+        return res

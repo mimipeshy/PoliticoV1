@@ -34,3 +34,11 @@ class GovernmentOffice:
             "status": "OK",
             "product": data
         }), 200)
+
+    @staticmethod
+    def get_all_offices():
+        return make_response(jsonify(
+            {"status": "OK",
+             "Message": "These are all political offices",
+             "Political office": office
+             }))

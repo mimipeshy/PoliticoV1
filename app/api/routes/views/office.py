@@ -19,3 +19,12 @@ def create_an_office():
 def get_one_office(office_id):
     res = q.get_one_office(office_id)
     return res
+
+
+@version1.route("/office", methods=['GET'])
+def get_all_offices():
+    if len(office) < 1:
+        return make_response(jsonify({"msg": "no created offices"}))
+    else:
+        res = q.get_all_offices()
+        return res

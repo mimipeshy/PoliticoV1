@@ -37,6 +37,11 @@ Use pytest to run: `pytest --cov=app`
 | POST  /api/v1/party                        | CREATE political party             |
 | GET  /api/v1/party                         | GET ALL political parties          |
 | GET  /api/v1/party/<int:party_id>          | GET ONE political party            |
+| DELETE  /api/v1/party                      | DELETE ONE political party         |
+| PUT  /api/v1/party/<int:party_id>          | UPDATE ONE political party         |
+| POST  /api/v1/office                       | CREATE government office           |
+| GET  /api/v1/office/<int:office_id>        | GET ONE government office          |
+| GET  /api/v1/office                        | GET ALL government offices          |
 
 
 ## Built With

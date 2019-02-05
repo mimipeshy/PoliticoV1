@@ -3,7 +3,7 @@ from flask import make_response, jsonify
 office = []
 
 
-class PoliticalOffice:
+class GovernmentOffice:
     """this initializes political office class methods"""
 
     def __init__(self, office_name, description, location):

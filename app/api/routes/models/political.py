@@ -63,3 +63,17 @@ class PoliticalParty:
             "Message": "Updated",
             "new details": task[0]
         }), 200)
+
+    @staticmethod
+    def delete_one_party(party_id):
+        data = [parties for parties in party if parties["party_id"] == party_id]
+        if not data:
+            return make_response(jsonify({
+                "status": "OK",
+                "Product": "Political party not found"
+            }), 404)
+        party.remove(party[0])
+        return make_response(jsonify({
+            "status": "OK",
+            "Message": "Party deleted"
+        }), 200)

@@ -41,3 +41,9 @@ def update_specific_party(party_id):
     data = request.get_json()
     res = p(data['party_name'], data['description'], data['location']).update_party_details(party_id)
     return res
+
+
+@version1.route("/party/<int:party_id>", methods=['DELETE'])
+def delete_specific_party(party_id):
+    res = p.delete_one_party(party_id)
+    return res

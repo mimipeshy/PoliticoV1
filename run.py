@@ -1,12 +1,7 @@
 import os
-from flask import Flask
-from app import app
+from app.api.app import create_app
 
-from config import app_config
-
-config_name = "development"
-app = app(config_name)
-
+app = create_app("development")
 
 @app.route('/')
 def hello_world():

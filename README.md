@@ -1,4 +1,4 @@
-# Politico
+# Politico       [![Build Status](https://travis-ci.org/mimipeshy/PoliticoV1.svg?branch=develop)](https://travis-ci.org/mimipeshy/PoliticoV1)   [![Maintainability](https://api.codeclimate.com/v1/badges/10436f3ef6f9d5bc5d88/maintainability)](https://codeclimate.com/github/mimipeshy/PoliticoV1/maintainability)
 
 Politico enables citizens give their mandate to politicians running for different government offices
 while building trust in the process through transparency.
@@ -30,6 +30,11 @@ Use pytest to run: `pytest --cov=app`
 - On terminal do: `source .venv`
 - Run the application: `python run`
 - The api endpoints can be consumed using postman.
+
+## Endpoints
+| Endpoint                                   | FUNCTIONALITY                      |
+| ----------------------------------------   |:----------------------------------:|
+| POST  /api/v1/party                        | CREATE political party             |
 
 
 ## Built With

@@ -3,6 +3,7 @@ from app.api.app import create_app
 
 app = create_app("development")
 
+
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
@@ -10,4 +11,4 @@ def hello_world():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)

@@ -28,3 +28,8 @@ def get_all_parties():
     else:
         res = p.get_all_parties()
         return res
+
+@version1.route("/party/<int:party_id>", methods=['GET'])
+def get_specific_party(party_id):
+    res = p.get_one_party(party_id)
+    return res

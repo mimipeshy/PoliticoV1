@@ -32,3 +32,17 @@ class PoliticalParty:
                 "Message": "These are all political parties",
                 "Political Party": party
             }))
+
+    @staticmethod
+    def get_one_party(party_id):
+        item = [parties for parties in party if parties["party_id"] == party_id]
+        if not item:
+            return make_response(jsonify({
+                "status": "OK",
+                "Product": "Political party not found"
+            }), 404)
+        return make_response(jsonify({
+            "status": "OK",
+            "product": item
+        }), 200)
+

@@ -35,6 +35,11 @@ class RoutesBaseTest(unittest.TestCase):
             "location": "thengio ",
             "description": " "
         })
+        self.add_office = json.dumps({
+            "office_name": "sugar",
+            "location": "kinoo",
+            "description": "thiijo"
+        })
 
     def tearDown(self):
         """Teardown tests"""

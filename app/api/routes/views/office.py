@@ -1,7 +1,7 @@
 from flask import jsonify, make_response, request
 
 from app.api.blueprints import version1
-from app.api.routes.models.office import PoliticalOffice as q, office
+from app.api.routes.models.office import GovernmentOffice as q, office
 
 
 @version1.route("/office", methods=['POST'])

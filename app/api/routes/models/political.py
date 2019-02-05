@@ -23,3 +23,12 @@ class PoliticalParty:
             "location": location
         }
         party.append(new_party)
+
+    @staticmethod
+    def get_all_parties():
+        return make_response(jsonify(
+            {
+                "status": "OK",
+                "Message": "These are all political parties",
+                "Political Party": party
+            }))

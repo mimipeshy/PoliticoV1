@@ -13,3 +13,9 @@ def create_an_office():
     return make_response(jsonify({
         "party": office
     }), 201)
+
+
+@version1.route("/office/<int:office_id>", methods=['GET'])
+def get_one_office(office_id):
+    res = q.get_one_office(office_id)
+    return res

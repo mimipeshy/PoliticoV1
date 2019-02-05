@@ -22,4 +22,15 @@ class GovernmentOffice:
         }
         return new_office
 
-    
+    @staticmethod
+    def get_one_office(office_id):
+        data = [offices for offices in office if offices["office_id"] == office_id]
+        if not data:
+            return make_response(jsonify({
+                "status": "OK",
+                "Product": "Political office not found"
+            }), 404)
+        return make_response(jsonify({
+            "status": "OK",
+            "product": data
+        }), 200)

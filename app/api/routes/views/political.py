@@ -29,7 +29,15 @@ def get_all_parties():
         res = p.get_all_parties()
         return res
 
+
 @version1.route("/party/<int:party_id>", methods=['GET'])
 def get_specific_party(party_id):
     res = p.get_one_party(party_id)
+    return res
+
+
+@version1.route("/party/<int:party_id>", methods=['PUT'])
+def update_specific_party(party_id):
+    data = request.get_json()
+    res = p(data['party_name'], data['description'], data['location']).update_party_details(party_id)
     return res

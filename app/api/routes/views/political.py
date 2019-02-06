@@ -1,8 +1,19 @@
+from os import abort
+
 from flask import request, jsonify, make_response
 
 from app.api.blueprints import version1
-from app.api.routes.models.political import PoliticalParty as p, party
+from app.api.routes.models.political import PoliticalParty as p, parties
 from app.api.utils import Validations
+
+
+@version1.route("/party", methods=['GET'])
+def get_all_parties():
+    if len(parties) < 1:
+        return make_response(jsonify({"msg": "no created parties"}))
+    else:
+        res = p.get_all_parties()
+        return res
 
 
 @version1.route("/party", methods=['POST'])
@@ -13,7 +24,7 @@ def create_political_party():
     description = data["description"]
     location = data["location"]
     if Validations.verify_political_details(party_name, description, location):
-        return jsonify({"msg": "fill in the details"})
+        return jsonify({"Message": "Missing field/s, fill in the details"})
     else:
         res = p.add_political_party(party_name, description, location)
         return make_response(jsonify({
@@ -21,19 +32,12 @@ def create_political_party():
         }), 201)
 
 
-@version1.route("/party", methods=['GET'])
-def get_all_parties():
-    if len(party) < 1:
-        return make_response(jsonify({"msg": "no created parties"}))
-    else:
-        res = p.get_all_parties()
-        return res
-
-
 @version1.route("/party/<int:party_id>", methods=['GET'])
 def get_specific_party(party_id):
-    res = p.get_one_party(party_id)
-    return res
+    for party in parties:
+        if party_id == party['party_id']:
+            return jsonify({'party details': party})
+    return make_response(jsonify({"msg": "Party not found"}),404)
 
 
 @version1.route("/party/<int:party_id>", methods=['PUT'])
@@ -45,5 +49,14 @@ def update_specific_party(party_id):
 
 @version1.route("/party/<int:party_id>", methods=['DELETE'])
 def delete_specific_party(party_id):
-    res = p.delete_one_party(party_id)
-    return res
+    data = [parties for party in parties if party["party_id"] == party_id]
+    if not data:
+        return make_response(jsonify({
+            "status": "OK",
+            "Product": "Political party not found"
+        }), 404)
+    parties.remove(parties[0])
+    return make_response(jsonify({
+        "status": "OK",
+        "Message": "Party deleted"
+        }), 200)

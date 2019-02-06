@@ -7,7 +7,7 @@ while building trust in the process through transparency.
 
 1) Clone the repository by doing: `git clone https://github.com/mimipeshy/PoliticoV1.git`
 
-2)Git checkout develop
+2) Git checkout develop
 
 3) Create a virtual environment: `virtualenv env`
 

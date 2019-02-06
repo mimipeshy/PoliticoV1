@@ -9,7 +9,7 @@ from app.api.utils import Validations
 
 @version1.route("/party", methods=['GET'])
 def get_all_parties():
-    if len(parties) < 1:
+    if not parties:
         return make_response(jsonify({"msg": "no created parties"}))
     else:
         res = p.get_all_parties()

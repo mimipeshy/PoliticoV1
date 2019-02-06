@@ -19,17 +19,21 @@ def get_all_parties():
 @version1.route("/party", methods=['POST'])
 def create_political_party():
     """this creates a new political party"""
+
     data = request.get_json(force=True)
     party_name = data["party_name"]
     description = data["description"]
     location = data["location"]
     if Validations.verify_political_details(party_name, description, location):
         return jsonify({"Message": "Missing field/s, fill in the details"})
-    else:
-        res = p.add_political_party(party_name, description, location)
-        return make_response(jsonify({
-            "party": res
-        }), 201)
+    product = p(party_name, description, location)
+    product.add_political_party()
+    return make_response(jsonify({
+        "Status": "OK",
+        "Message": "Party created successfully",
+        "Party Details": parties
+
+    }), 201)
 
 
 @version1.route("/party/<int:party_id>", methods=['GET'])

@@ -5,7 +5,6 @@ parties = []
 
 class PoliticalParty:
     """this initializes political party class methods"""
-    """" Initialize a product description"""
 
     def __init__(self, party_name, description, location):
         self.party_id = len(parties) + 1
@@ -13,14 +12,13 @@ class PoliticalParty:
         self.location = location
         self.description = description
 
-    @staticmethod
-    def add_political_party(party_name, description, location):
+    def add_political_party(self):
         """this saves political party data"""
         new_party = {
             "party_id": len(parties) + 1,
-            "party_name": party_name,
-            "description": description,
-            "location": location
+            "party_name": self.party_name,
+            "description": self.description,
+            "location": self.location
         }
         parties.append(new_party)
 
@@ -32,7 +30,6 @@ class PoliticalParty:
                 "Message": "These are all political parties",
                 "Political Party": parties
             }))
-
 
     @staticmethod
     def update_party_details(party_id):

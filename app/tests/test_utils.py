@@ -12,11 +12,7 @@ class ValidationTests(RoutesBaseTest):
                                       content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
-        response = self.client().post('/api/v1/party', data=self.empty_location,
-                                      content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client().post('/api/v1/party', data=self.empty_description,
+        response = self.client().post('/api/v1/party', data=self.empty_logoUrl,
                                       content_type='application/json')
         self.assertEqual(response.status_code, 200)
 

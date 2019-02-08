@@ -22,12 +22,12 @@ def create_political_party():
 
     data = request.get_json(force=True)
     party_name = data["party_name"]
-    description = data["description"]
-    location = data["location"]
-    if Validations.verify_political_details(party_name, description, location):
+    logoUrl = data["logoUrl"]
+
+    if Validations.verify_political_details(party_name,logoUrl):
         return jsonify({"Message": "Missing field/s, fill in the details"})
-    product = p(party_name, description, location)
-    product.add_political_party()
+    new = p(party_name, logoUrl)
+    new.add_political_party()
     return make_response(jsonify({
         "Status": "OK",
         "Message": "Party created successfully",
@@ -44,10 +44,10 @@ def get_specific_party(party_id):
     return make_response(jsonify({"msg": "Party not found"}),404)
 
 
-@version1.route("/party/<int:party_id>", methods=['PUT'])
+@version1.route("/party/<int:party_id>", methods=['PATCH'])
 def update_specific_party(party_id):
     data = request.get_json()
-    res = p(data['party_name'], data['description'], data['location']).update_party_details(party_id)
+    res = p(data['party_name'], data['logoUrl']).update_party_details(party_id)
     return res
 
 

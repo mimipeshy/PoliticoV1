@@ -6,19 +6,17 @@ parties = []
 class PoliticalParty:
     """this initializes political party class methods"""
 
-    def __init__(self, party_name, description, location):
+    def __init__(self, party_name, logoUrl):
         self.party_id = len(parties) + 1
         self.party_name = party_name
-        self.location = location
-        self.description = description
+        self.logoUrl = logoUrl
 
     def add_political_party(self):
         """this saves political party data"""
         new_party = {
             "party_id": len(parties) + 1,
             "party_name": self.party_name,
-            "description": self.description,
-            "location": self.location
+            "logoUrl": self.logoUrl
         }
         parties.append(new_party)
 
@@ -30,7 +28,6 @@ class PoliticalParty:
                 "Message": "These are all political parties",
                 "Political Party": parties
             }))
-
     @staticmethod
     def update_party_details(party_id):
         task = [party for party in parties if party["party_id"] == party_id]
@@ -40,12 +37,10 @@ class PoliticalParty:
                 "Message": "party not found"
             }), 404)
 
-        task[0]['description'] = request.json.get('description', task[0]['description'])
-        task[0]['location'] = request.json.get('location', task[0]['location'])
         task[0]['party_name'] = request.json.get('party_name', task[0]['party_name'])
+        task[0]['logoUrl'] = request.json.get('logoUrl', task[0]['logoUrl'])
         return make_response(jsonify({
             "status": "OK",
-            "Message": "Updated",
+            "Message": "Updated Party Name",
             "new details": task[0]
         }), 200)
-

@@ -8,7 +8,7 @@ class PoliticalTests(RoutesBaseTest):
     """Tests functionality of the political endpoint"""
 
     def test_create_party(self):
-        """Test API can create a product"""
+        """Test API can create a party"""
         response = self.client().post('/api/v1/party', data=self.add_party,
                                       content_type='application/json')
         self.assertEqual(response.status_code, 201)
@@ -40,12 +40,12 @@ class PoliticalTests(RoutesBaseTest):
     def test_political_update_successfully(self):
         self.client().post('/api/v1/party', data=self.add_party,
                            content_type='application/json')
-        response = self.client().put('/api/v1/party/1', data=self.update_office,
+        response = self.client().patch('/api/v1/party/1', data=self.update_party,
                                      content_type='application/json',
                                      )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client().put('/api/v1/party/6', data=self.update_office,
+        response = self.client().patch('/api/v1/party/6', data=self.update_party,
                                      content_type='application/json',
                                      )
         self.assertEqual(response.status_code, 404)

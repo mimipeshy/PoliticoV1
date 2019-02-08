@@ -21,12 +21,22 @@ class PoliticalOfficeTests(RoutesBaseTest):
                                      )
         self.assertEqual(response.status_code, 200)
 
+    def test_get_office_forbidden(self):
+        self.client().post('/api/v1/office', data=self.add_office,
+                          content_type='application/json')
+        response = self.client().get('/api/v1/office/10',
+                                     content_type='application/json',
+                                     )
+        self.assertEqual(response.status_code, 404)
+
     def test_get_all_offices(self):
         """Tests API can get all offices"""
         offices = {"offices": "offices"}
         response = self.client().get('/api/v1/office', data=offices,
                                      content_type='application/json')
         self.assertEqual(response.status_code, 200)
+
+
 
 
 if __name__ == '__main__':

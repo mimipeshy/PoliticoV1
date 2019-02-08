@@ -7,7 +7,7 @@ from app.api.routes.models.office import GovernmentOffice as q, office
 @version1.route("/office", methods=['POST'])
 def create_an_office():
     data = request.get_json()
-    final = q(data["office_name"], data["description"], data["location"]).add_political_office()
+    final = q(data["office_name"], data["type"]).add_political_office()
     # add to a list and return it
     office.append(final)
     return make_response(jsonify({
@@ -26,7 +26,7 @@ def get_one_office(office_id):
 @version1.route("/office", methods=['GET'])
 def get_all_offices():
     if len(office) < 1:
-        return make_response(jsonify({"msg": "no created offices"}))
+        return make_response(jsonify({"msg": "no created offices"}), 404)
     else:
         res = q.get_all_offices()
         return res

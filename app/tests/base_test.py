@@ -11,34 +11,26 @@ class RoutesBaseTest(unittest.TestCase):
         # tear down tests
 
         self.add_party = json.dumps({
-            "party_name": "sugar",
-            "location": "kinoo",
-            "description": "thiijo"
+            "party_name": "maendeleo",
+            "logoUrl": "<https:www.facebook.com>"
+
         })
-        self.update_office = json.dumps({
+        self.update_party = json.dumps({
             "party_name": "chama cha maendeleo",
-            "location": "kinoo",
-            "description": "ni ya madem"
+            "logoUrl": "<www.andela.com>"
         })
         self.empty_party_name = json.dumps({
             "party_name": " ",
-            "location": "kinoo",
-            "description": "thiijo"
+            "logoUrl": "kinoo"
         })
-        self.empty_location = json.dumps({
+        self.empty_logoUrl = json.dumps({
             "party_name": "wazee united",
-            "location": " ",
-            "description": "thiijo"
-        })
-        self.empty_description = json.dumps({
-            "party_name": "wazee united",
-            "location": "thengio ",
-            "description": " "
+            "logoUrl": " "
+
         })
         self.add_office = json.dumps({
-            "office_name": "sugar",
-            "location": "kinoo",
-            "description": "thiijo"
+            "office_name": "governnemt",
+            "type": "senate"
         })
 
     def tearDown(self):

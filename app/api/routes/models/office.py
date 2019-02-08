@@ -6,19 +6,19 @@ office = []
 class GovernmentOffice:
     """this initializes political office class methods"""
 
-    def __init__(self, office_name, description, location):
+    def __init__(self, office_name,type):
         self.office_id = len(office) + 1
         self.office_name = office_name
-        self.location = location
-        self.description = description
+        self.type = type
+
 
     def add_political_office(self):
         """this saves political party data"""
         new_office = {
             "office_id": len(office) + 1,
             "office_name": self.office_name,
-            "description": self.description,
-            "location": self.location
+            "type": self.type
+
         }
         return new_office
 

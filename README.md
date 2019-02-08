@@ -41,7 +41,7 @@ Use pytest to run: `pytest --cov=app`
 | GET  /api/v1/office/<int:office_id>        | GET ONE government office          |
 | GET  /api/v1/office                        | GET ALL government offices         |
 
-# heroku host
+# Heroku host
 
 https://politicov1.herokuapp.com
 

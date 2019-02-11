@@ -4,7 +4,7 @@ from flask import request, jsonify, make_response
 
 from app.api.blueprints import version1
 from app.api.routes.models.political import PoliticalParty as p, parties
-from app.api.utils import Validations
+from app.api.utils import Validations, ValidateLogo
 
 
 @version1.route("/party", methods=['GET'])
@@ -25,7 +25,9 @@ def create_political_party():
     logoUrl = data["logoUrl"]
 
     if Validations.verify_political_details(party_name,logoUrl):
-        return jsonify({"Message": "Missing field/s, fill in the details"})
+        return Validations.verify_political_details(party_name, logoUrl)
+    if ValidateLogo.validate_logo(logoUrl):
+        return ValidateLogo.validate_logo(logoUrl)
     new = p(party_name, logoUrl)
     new.add_political_party()
     return make_response(jsonify({

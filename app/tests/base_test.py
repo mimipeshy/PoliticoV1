@@ -12,16 +12,16 @@ class RoutesBaseTest(unittest.TestCase):
 
         self.add_party = json.dumps({
             "party_name": "maendeleo",
-            "logoUrl": "<https:www.facebook.com>"
+            "logoUrl": "https://www.vnfojo.com/juj"
 
         })
         self.update_party = json.dumps({
             "party_name": "chama cha maendeleo",
-            "logoUrl": "<www.andela.com>"
+            "logoUrl": "https://www.vnfojo.com/juj"
         })
         self.empty_party_name = json.dumps({
             "party_name": " ",
-            "logoUrl": "kinoo"
+            "logoUrl":"https://www.vnfojo.com/juj"
         })
         self.empty_logoUrl = json.dumps({
             "party_name": "wazee united",

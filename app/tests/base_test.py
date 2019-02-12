@@ -11,25 +11,36 @@ class RoutesBaseTest(unittest.TestCase):
         # tear down tests
 
         self.add_party = json.dumps({
-            "party_name": "maendeleo",
-            "logoUrl": "https://www.vnfojo.com/juj"
+            "name": "maendeleo",
+            "hqAddress":"kilimani",
+            "logoUrl": "<https:www.facebook.com>"
 
         })
         self.update_party = json.dumps({
-            "party_name": "chama cha maendeleo",
-            "logoUrl": "https://www.vnfojo.com/juj"
+            "name": "chama cha maendeleo",
+            "hqAddress": "kilimani",
+            "logoUrl": "<https:www.facebook.com>"
+
         })
         self.empty_party_name = json.dumps({
-            "party_name": " ",
-            "logoUrl":"https://www.vnfojo.com/juj"
+            "name": "",
+            "hqAddress":"koko",
+            "logoUrl": "kinoo"
         })
         self.empty_logoUrl = json.dumps({
-            "party_name": "wazee united",
+            "name": "wazee united",
+            "hqAddress":"kokoo",
             "logoUrl": " "
 
         })
+        self.empty_hqAddress = json.dumps({
+            "name": "wazee united",
+            "hqAddress": "",
+            "logoUrl": "jjook "
+
+        })
         self.add_office = json.dumps({
-            "office_name": "governnemt",
+            "name": "governnemt",
             "type": "senate"
         })
 

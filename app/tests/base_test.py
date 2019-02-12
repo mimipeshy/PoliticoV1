@@ -17,10 +17,7 @@ class RoutesBaseTest(unittest.TestCase):
 
         })
         self.update_party = json.dumps({
-            "name": "chama cha maendeleo",
-            "hqAddress": "kilimani",
-            "logoUrl": "<https:www.facebook.com>"
-
+            "name": "chama cha maendeleo"
         })
         self.empty_party_name = json.dumps({
             "name": "",

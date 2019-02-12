@@ -27,7 +27,7 @@ class Responses:
         """this returns an invalid request message"""
         response = make_response(jsonify({
             "Status": 404,
-            "Message": message
+            "Data": message
         }))
         return response
 
@@ -35,6 +35,6 @@ class Responses:
     def bad_request(message):
         response = make_response(jsonify({
             'Status': 400,
-            'Message': message
+            'Data': message
         }))
         return response

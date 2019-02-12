@@ -16,4 +16,3 @@ class Validations:
             if len(logoUrl.strip()) == 0:
                 return Responses.bad_request("LogoUrl cannot be empty"), 400
 
-

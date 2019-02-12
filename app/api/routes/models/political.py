@@ -28,11 +28,12 @@ class PoliticalParty:
     def get_all_parties():
         return Responses.complete_response(parties)
 
+
+class Update:
     @staticmethod
     def update_party_details(id):
         task = [party for party in parties if party["id"] == id]
         if not task:
             return Responses.not_found("Party not found"), 404
         task[0]['name'] = request.json.get('name', task[0]['name'])
-        task[0]['logoUrl'] = request.json.get('logoUrl', task[0]['logoUrl'])
-        return Responses.complete_response(task[0])
+        return Responses.complete_response(task)

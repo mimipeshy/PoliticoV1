@@ -1,6 +1,6 @@
 import json
 import unittest
-
+from app.api.routes.models.political import parties
 from app.tests.base_test import RoutesBaseTest
 
 
@@ -12,6 +12,9 @@ class PoliticalTests(RoutesBaseTest):
         response = self.client().post('/api/v1/party', data=self.add_party,
                                       content_type='application/json')
         self.assertEqual(response.status_code, 201)
+        data = json.loads(response.data.decode())
+        self.assertTrue(data['Status'] == 201)
+        self.assertTrue(data['Data'] == parties)
 
     def test_get_all_parties(self):
         """Tests API can get all parties"""
@@ -20,6 +23,9 @@ class PoliticalTests(RoutesBaseTest):
         response = self.client().get('/api/v1/party',
                                      content_type='application/json')
         self.assertEqual(response.status_code, 200)
+        data = json.loads(response.data.decode())
+        self.assertTrue(data['Status'] == 200)
+        self.assertTrue(data['Data']== parties)
 
     def test_get_specific_by_id(self):
         """Tests API can get a specific party by using its id"""
@@ -29,6 +35,8 @@ class PoliticalTests(RoutesBaseTest):
                                      content_type='application/json',
                                      )
         self.assertEqual(response.status_code, 200)
+        data = json.loads(response.data.decode())
+        self.assertTrue(data['Status'] == 200)
 
     def test_get_wrong_political_party(self):
         self.client().post('/api/v1/party', data=self.add_party,
@@ -41,13 +49,13 @@ class PoliticalTests(RoutesBaseTest):
     def test_political_update_successfully(self):
         self.client().post('/api/v1/party', data=self.add_party,
                            content_type='application/json')
-        response = self.client().patch('/api/v1/party/1', data=self.update_party,
+        response = self.client().patch('/api/v1/party/1/name', data=self.update_party,
                                        content_type='application/json',
                                        )
         self.assertEqual(response.status_code, 200)
 
     def test_political_update_forbidden(self):
-        response = self.client().patch('/api/v1/party/56', data=self.update_party,
+        response = self.client().patch('/api/v1/party/56/name', data=self.update_party,
                                        content_type='application/json',
                                        )
         self.assertEqual(response.status_code, 404)
@@ -65,6 +73,7 @@ class PoliticalTests(RoutesBaseTest):
                                         content_type='application/json',
                                         )
         self.assertEqual(response.status_code, 404)
+
 
 
 if __name__ == '__main__':

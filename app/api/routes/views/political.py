@@ -1,19 +1,17 @@
-from os import abort
-
-from flask import request, jsonify, make_response
+from flask import request
 
 from app.api.blueprints import version1
 from app.api.routes.models.political import PoliticalParty as p, parties
-from app.api.utils import Validations, ValidateLogo
+from app.api.utils import Validations
+from app.api.responses import Responses
 
 
 @version1.route("/party", methods=['GET'])
 def get_all_parties():
+    """this gets all parties"""
     if not parties:
-        return make_response(jsonify({"msg": "no created parties"}))
-    else:
-        res = p.get_all_parties()
-        return res
+        return Responses.not_found("No created parties yet"), 404
+    return Responses.complete_response(parties), 200
 
 
 @version1.route("/party", methods=['POST'])
@@ -21,48 +19,38 @@ def create_political_party():
     """this creates a new political party"""
 
     data = request.get_json(force=True)
-    party_name = data["party_name"]
+    name = data["name"]
+    hqAddress = data['hqAddress']
     logoUrl = data["logoUrl"]
 
-    if Validations.verify_political_details(party_name,logoUrl):
-        return Validations.verify_political_details(party_name, logoUrl)
-    if ValidateLogo.validate_logo(logoUrl):
-        return ValidateLogo.validate_logo(logoUrl)
-    new = p(party_name, logoUrl)
+    if Validations.verify_political_details(name, hqAddress, logoUrl):
+        return Validations.verify_political_details(name, hqAddress, logoUrl)
+    new = p(name, hqAddress, logoUrl)
     new.add_political_party()
-    return make_response(jsonify({
-        "Status": "OK",
-        "Message": "Party created successfully",
-        "Party Details": parties
+    return Responses.created_response(parties), 201
 
-    }), 201)
-
-
-@version1.route("/party/<int:party_id>", methods=['GET'])
-def get_specific_party(party_id):
+@version1.route("/party/<int:id>", methods=['GET'])
+def get_specific_party(id):
+    """this gets a specific party using id"""
     for party in parties:
-        if party_id == party['party_id']:
-            return jsonify({'party details': party})
-    return make_response(jsonify({"msg": "Party not found"}),404)
+        if id == party['id']:
+            return Responses.complete_response(party), 200
+    return Responses.not_found("Party not found"), 404
 
 
-@version1.route("/party/<int:party_id>", methods=['PATCH'])
-def update_specific_party(party_id):
+@version1.route("/party/<int:id>", methods=['PATCH'])
+def update_specific_party(id):
+    """this updates a specific party name"""
     data = request.get_json()
-    res = p(data['party_name'], data['logoUrl']).update_party_details(party_id)
+    res = p(data['name'], data['hqAddress'], data['logoUrl']).update_party_details(id)
     return res
 
 
-@version1.route("/party/<int:party_id>", methods=['DELETE'])
-def delete_specific_party(party_id):
-    data = [parties for party in parties if party["party_id"] == party_id]
-    if not data:
-        return make_response(jsonify({
-            "status": "OK",
-            "Product": "Political party not found"
-        }), 404)
-    parties.remove(parties[0])
-    return make_response(jsonify({
-        "status": "OK",
-        "Message": "Party deleted"
-        }), 200)
+@version1.route("/party/<int:id>", methods=['DELETE'])
+def delete_specific_party(id):
+    """this deletes a specific party"""
+    for party in parties:
+        if party["id"] == int(id):
+            parties.remove(party)
+            return Responses.complete_response("Party deleted successfully"), 200
+    return Responses.not_found("Party does not exist"), 404

@@ -1,4 +1,6 @@
-from flask import make_response, jsonify, request
+from flask import request
+
+from app.api.responses import Responses
 
 parties = []
 
@@ -6,41 +8,31 @@ parties = []
 class PoliticalParty:
     """this initializes political party class methods"""
 
-    def __init__(self, party_name, logoUrl):
+    def __init__(self, name, hqAddress, logoUrl):
         self.party_id = len(parties) + 1
-        self.party_name = party_name
+        self.name = name
+        self.hqAddress = hqAddress
         self.logoUrl = logoUrl
 
     def add_political_party(self):
         """this saves political party data"""
         new_party = {
-            "party_id": len(parties) + 1,
-            "party_name": self.party_name,
+            "id": len(parties) + 1,
+            "name": self.name,
+            "hqAddress": self.hqAddress,
             "logoUrl": self.logoUrl
         }
         parties.append(new_party)
 
     @staticmethod
     def get_all_parties():
-        return make_response(jsonify(
-            {     
-                "status": "OK",
-                "Message": "These are all political parties",
-                "Political Party": parties
-            }))
-    @staticmethod
-    def update_party_details(party_id):
-        task = [party for party in parties if party["party_id"] == party_id]
-        if not task:
-            return make_response(jsonify({
-                "status": "OK",
-                "Message": "party not found"
-            }), 404)
+        return Responses.complete_response(parties)
 
-        task[0]['party_name'] = request.json.get('party_name', task[0]['party_name'])
+    @staticmethod
+    def update_party_details(id):
+        task = [party for party in parties if party["id"] == id]
+        if not task:
+            return Responses.not_found("Party not found"), 404
+        task[0]['name'] = request.json.get('name', task[0]['name'])
         task[0]['logoUrl'] = request.json.get('logoUrl', task[0]['logoUrl'])
-        return make_response(jsonify({
-            "status": "OK",
-            "Message": "Updated Party Name",
-            "new details": task[0]
-        }), 200)
+        return Responses.complete_response(task[0])

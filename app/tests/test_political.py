@@ -15,8 +15,9 @@ class PoliticalTests(RoutesBaseTest):
 
     def test_get_all_parties(self):
         """Tests API can get all parties"""
-        parties = {"parties": "parties"}
-        response = self.client().get('/api/v1/party', data=parties,
+        self.client().post('/api/v1/party', data=self.add_party,
+                           content_type='application/json')
+        response = self.client().get('/api/v1/party',
                                      content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
@@ -41,13 +42,14 @@ class PoliticalTests(RoutesBaseTest):
         self.client().post('/api/v1/party', data=self.add_party,
                            content_type='application/json')
         response = self.client().patch('/api/v1/party/1', data=self.update_party,
-                                     content_type='application/json',
-                                     )
+                                       content_type='application/json',
+                                       )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client().patch('/api/v1/party/6', data=self.update_party,
-                                     content_type='application/json',
-                                     )
+    def test_political_update_forbidden(self):
+        response = self.client().patch('/api/v1/party/56', data=self.update_party,
+                                       content_type='application/json',
+                                       )
         self.assertEqual(response.status_code, 404)
 
     def test_delete_party_by_id(self):

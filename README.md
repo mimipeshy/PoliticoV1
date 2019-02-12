@@ -24,22 +24,21 @@ Use pytest to run: `pytest --cov=app`
 
 ## Running it on machine
 - Create a .env file to store your environment variables: `touch .venv`
-- In the `.venv` file add this line: `export SECRET=<your-secret-key-here`
-- On terminal do: `source .venv`
-- Run the application: `python run`
+- On terminal do: `source venv/bin/activate` on Linux/Mac  or `source venv/Scripts/activate` on windows
+- Run the application: `python run.py`
 - The api endpoints can be consumed using postman.
 
 ## Endpoints
-| Endpoint                                   | FUNCTIONALITY                      |
-| ----------------------------------------   |:----------------------------------:|
-| POST  /api/v1/party                        | CREATE political party             |
-| GET  /api/v1/party                         | GET ALL political parties          |
-| GET  /api/v1/party/<int:party_id>          | GET ONE political party            |
-| DELETE  /api/v1/party                      | DELETE ONE political party         |
-| PATCH /api/v1/party/<int:party_id>         | UPDATE ONE political party         |
-| POST  /api/v1/office                       | CREATE government office           |
-| GET  /api/v1/office/<int:office_id>        | GET ONE government office          |
-| GET  /api/v1/office                        | GET ALL government offices         |
+| Endpoint                                | FUNCTIONALITY                      | API ENDPOINTS               |
+| ----------------------------------------|:----------------------------------:|:--------------------------: |                   
+| POST  /api/v1/party                     | CREATE political party             |"name", "hqAddress, "logoUrl |
+| GET  /api/v1/party                      | GET ALL political parties          |                             |             
+| GET  /api/v1/party/<int:id>             | GET ONE political party            |                             |               
+| DELETE  /api/v1/party                   | DELETE ONE political party         |                             |              
+| PATCH /api/v1/party/<int:id>            | UPDATE ONE political party         |                             |               
+| POST  /api/v1/office                    | CREATE government office           |"name", "type"               |               
+| GET  /api/v1/office/<int:id>            | GET ONE government office          |                             |              
+| GET  /api/v1/office                     | GET ALL government offices         |                             |               
 
 # Heroku host
 

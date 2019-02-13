@@ -48,8 +48,8 @@ Run these fields on  postman:-
 
 this creates a new political party
 {
-"name: String,
-"hqAddress: String,
+"name": String,
+"hqAddress": String,
 "logoUrl": String
 }
  this creates a new government office

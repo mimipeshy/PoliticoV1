@@ -14,7 +14,7 @@ class PoliticalTests(RoutesBaseTest):
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.data.decode())
         self.assertTrue(data['Status'] == 201)
-        self.assertTrue(data['Data'] == parties)
+
 
     def test_get_all_parties(self):
         """Tests API can get all parties"""

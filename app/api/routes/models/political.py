@@ -14,15 +14,6 @@ class PoliticalParty:
         self.hqAddress = hqAddress
         self.logoUrl = logoUrl
 
-    def add_political_party(self):
-        """this saves political party data"""
-        new_party = {
-            "id": len(parties) + 1,
-            "name": self.name,
-            "hqAddress": self.hqAddress,
-            "logoUrl": self.logoUrl
-        }
-        parties.append(new_party)
 
     @staticmethod
     def get_all_parties():

@@ -13,7 +13,7 @@ class RoutesBaseTest(unittest.TestCase):
         self.add_party = json.dumps({
             "name": "maendeleo",
             "hqAddress":"kilimani",
-            "logoUrl": "<https:www.facebook.com>"
+            "logoUrl": "http://facebook.com/pic.jpg"
 
         })
         self.update_party = json.dumps({
@@ -22,7 +22,7 @@ class RoutesBaseTest(unittest.TestCase):
         self.empty_party_name = json.dumps({
             "name": "",
             "hqAddress":"koko",
-            "logoUrl": "kinoo"
+            "logoUrl": "http://facebook.com/pic.jpg"
         })
         self.empty_logoUrl = json.dumps({
             "name": "wazee united",
@@ -33,7 +33,7 @@ class RoutesBaseTest(unittest.TestCase):
         self.empty_hqAddress = json.dumps({
             "name": "wazee united",
             "hqAddress": "",
-            "logoUrl": "jjook "
+            "logoUrl": "http://facebook.com/pic.jpg "
 
         })
         self.add_office = json.dumps({

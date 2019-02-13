@@ -29,16 +29,36 @@ Use pytest to run: `pytest --cov=app`
 - The api endpoints can be consumed using postman.
 
 ## Endpoints
-| Endpoint                                | FUNCTIONALITY                      | API ENDPOINTS                                      |
-| ----------------------------------------|:----------------------------------:|:-------------------------------------------------: |                   
-| POST  /api/v1/party                     | CREATE political party             |"name":String, "hqAddress":String, "logoUrl":String |
-| GET  /api/v1/party                      | GET ALL political parties          |                                                    |             
-| GET  /api/v1/party/<int:id>             | GET ONE political party            |                                                    |               
-| DELETE  /api/v1/party                   | DELETE ONE political party         |                                                    |              
-| PATCH /api/v1/party/<int:id>/name       | UPDATE ONE political party         |                                                    |               
-| POST  /api/v1/office                    | CREATE government office           |"name":String, "type":String                        |               
-| GET  /api/v1/office/<int:id>            | GET ONE government office          |                                                    |              
-| GET  /api/v1/office                     | GET ALL government offices         |                                                    |               
+| Endpoint                                | FUNCTIONALITY                      | 
+| ----------------------------------------|:----------------------------------:|                  
+| POST  /api/v1/party                     | CREATE political party             |   
+| GET  /api/v1/party                      | GET ALL political parties          |                                                                 
+| GET  /api/v1/party/<int:id>             | GET ONE political party            |                                                                   
+| DELETE  /api/v1/party/<int:id>          | DELETE ONE political party         |                                                                  
+| PATCH /api/v1/party/<int:id>/name       | UPDATE ONE political party         |                                                                   
+| POST  /api/v1/office                    | CREATE government office           |                                     
+| GET  /api/v1/office/<int:id>            | GET ONE government office          |                                                                  
+| GET  /api/v1/office                     | GET ALL government offices         |                                                                   
+
+# How to run endpoints in postman
+
+```bash
+Run these fields on  postman
+
+this creates a new political party
+{
+"name: String,
+"hqAddress: String,
+"logoUrl": String
+}
+ this creates a new government office
+{
+"name" : String,
+"type": String
+}
+
+```
+
 
 # Heroku host
 

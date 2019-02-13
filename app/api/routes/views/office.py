@@ -2,7 +2,7 @@ from flask import jsonify, make_response, request
 from app.api.responses import Responses
 
 from app.api.blueprints import version1
-from app.api.routes.models.office import GovernmentOffice as q, office
+from app.api.routes.models.office import GovernmentOffice as q, offices
 
 @version1.route("/office", methods=['POST'])
 def create_an_office():
@@ -29,10 +29,13 @@ def create_an_office():
         return Responses.bad_request("Type cannot be empty"), 400
     if len(name) < 6:
         return Responses.bad_request("Office Name should have more than 6 characters"), 404
+    for office in offices:
+        if office["name"] == name:
+            return Responses.bad_request("Office with that name already exists")
     final = q(data["name"], data["type"]).add_political_office()
     # add to a list and return it
-    office.append(final)
-    return Responses.created_response(office), 201
+    offices.append(final)
+    return Responses.created_response(offices), 201
 
 
 @version1.route("/office/<int:id>", methods=['GET'])
@@ -45,7 +48,7 @@ def get_one_office(id):
 @version1.route("/office", methods=['GET'])
 def get_all_offices():
     """this returns all offices"""
-    if len(office) < 1:
+    if len(offices) < 1:
         return Responses.not_found("No created offices"), 404
     else:
         res = q.get_all_offices()

@@ -1,6 +1,7 @@
 from flask import request
 
 from app.api.responses import Responses
+from app.api.routes.models.office import offices
 
 
 def validate_update_all():
@@ -24,3 +25,6 @@ def validate_update_all():
         return Responses.bad_request("Name should have more than 6 characters"), 404
     if not isinstance(data['name'], str):
         return Responses.bad_request('Ensure that all name input is a string'), 400
+    for office in offices:
+        if office["name"] == name:
+            return Responses.bad_request("Office with that name already exists")

@@ -15,10 +15,6 @@ class Validations:
                 return Responses.bad_request("LogoUrl cannot be empty"), 400
 
     @staticmethod
-    def validate_integers(input):
-        if isinstance(input, str):
-            return Responses.bad_request("Only Strings are allowed for this method"), 400
-    @staticmethod
     def validate_strings(input):
         if isinstance(input, str):
             return Responses.bad_request("Only Strings are allowed for this method"), 400

@@ -13,7 +13,7 @@ from app.api.responses import Responses
 def get_all_parties():
     """this gets all parties"""
     if not parties:
-            return Responses.not_found("No created parties yet"), 404
+        return Responses.not_found("No created parties yet"), 404
     return Responses.complete_response(parties), 200
 
 
@@ -53,9 +53,7 @@ def delete_specific_party(id):
     """this deletes a specific party"""
 
     for party in parties:
-                if party["id"] == int(id):
-                    parties.remove(party)
-                    return Responses.complete_response("Party deleted successfully"), 200
+        if party["id"] == int(id):
+            parties.remove(party)
+            return Responses.complete_response("Party deleted successfully"), 200
     return Responses.not_found("Party does not exist"), 404
-
-

@@ -41,9 +41,10 @@ Use pytest to run: `pytest --cov=app`
 | GET  /api/v1/office                     | GET ALL government offices         |                                                                   
 
 # How to run endpoints in postman
+Run these fields on  postman:-
 
 ```bash
-Run these fields on  postman
+
 
 this creates a new political party
 {

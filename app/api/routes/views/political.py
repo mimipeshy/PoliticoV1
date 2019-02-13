@@ -25,6 +25,9 @@ def create_political_party():
     hqAddress = data['hqAddress']
     logoUrl = data["logoUrl"]
 
+    validate = Validations.validate_integers(data)
+    if validate:
+        return Validations.validate_integers(data)
     if Validations.verify_political_details(name, hqAddress, logoUrl):
         return Validations.verify_political_details(name, hqAddress, logoUrl)
     new = p(name, hqAddress, logoUrl)

@@ -6,6 +6,8 @@ from app.api.responses import Responses
 
 from urllib.parse import urlparse
 
+from app.api.routes.models.political import parties
+
 
 class Validations:
 
@@ -40,9 +42,11 @@ class Validations:
             return Responses.bad_request("Name should have not more than 12 charcaters"), 404
         if len(hqAddress) > 12:
             return Responses.bad_request("hqAddress should have not more than 12 charcaters"), 404
-        # if bool(re.match(name, is_valid_name)):
-        #     return name
-        # return Responses.bad_request("Name can only contain characters from A-Z"),404
+        for party in parties:
+            if party["name"] == name:
+                return Responses.bad_request("Party with that name already exists")
+        # if not bool(re.match(name, is_valid_name)):
+        #     return Responses.bad_request("Name can only contain characters from A-Z"),404
 
     @staticmethod
     def validate_logo():

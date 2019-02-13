@@ -13,17 +13,19 @@ def hello_world():
 @app.errorhandler(404)
 def error404(e):
     return make_response(jsonify({"Status": 404,
-                                  "Data": "You are not allowed to use this method".format(e)}), 404)
+                                  "Data": "Not Found".format(e)}), 404)
 
-@app.errorhandler(405)
+
+@app.errorhandler(403)
 def error404(e):
-    return make_response(jsonify({"Status": 405,
-                                  "Data": "Only integers are allowed for this method".format(e)}), 405)
+    return make_response(jsonify({"Status": 403,
+                                  "Data": "Forbidden".format(e)}), 403)
+
 
 @app.errorhandler(500)
 def error404(e):
     return make_response(jsonify({"Status": 500,
-                                  "Data": "Request time out".format(e)}), 500)
+                                  "Data": "Internal Server Error".format(e)}), 500)
 
 
 if __name__ == '__main__':

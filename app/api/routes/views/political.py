@@ -1,10 +1,12 @@
 from flask import request
 
 import app.api.routes.models.political
+from app.api.routes.models.political import PoliticalParty as p, parties
 from app.api.blueprints import version1
 from app.api.responses import Responses
 from app.api.utils import Validations
 from app.api.valid import validate_update_all as v
+from app.api.routes.models import *
 
 
 @version1.route("/party", methods=['GET'])
@@ -37,19 +39,19 @@ def create_political_party():
     if Validations.validate_logo():
         return Validations.validate_logo()
     new_party = {
-        'id': len(app.api.routes.models.political.parties) + 1,
+        'id': len(parties) + 1,
         'name': request.json['name'],
         'hqAddress': request.json.get('hqAddress'),
         'logoUrl': request.json.get('logoUrl'),
     }
-    app.api.routes.models.political.parties.append(new_party)
+    parties.append(new_party)
     return Responses.created_response(new_party), 201
 
 
 @version1.route("/party/<int:id>", methods=['GET'])
 def get_specific_party(id):
     """this gets a specific party using id"""
-    for party in app.api.routes.models.political.parties:
+    for party in parties:
         if id == party['id']:
             return Responses.complete_response(party), 200
     return Responses.not_found("Party not found"), 404

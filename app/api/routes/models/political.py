@@ -19,6 +19,18 @@ class PoliticalParty:
     def get_all_parties():
         return Responses.complete_response(parties)
 
+    def add_political_party(self):
+        """this saves political party data"""
+        new_party = {
+            "id": len(parties) + 1,
+            "name": self.name,
+            "hqAddress": self.hqAddress,
+            "logoUrl": self.logoUrl
+        }
+        parties.append(new_party)
+
+
+
 
 class Update:
     @staticmethod
